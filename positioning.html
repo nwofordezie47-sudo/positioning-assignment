@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Positioning Assignment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #789a99 0%, #ffd202 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-family: "Momo Trust Display", sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro h2 {
+            color: #789a99;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .exercise-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #789a99;
+            padding-bottom: 15px;
+        }
+
+        .exercise-number {
+            background: #789a99;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .exercise-title {
+            color: #789a99;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .difficulty {
+            margin-left: auto;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .difficulty.easy {
+            background: #789a99;
+            color: white;
+        }
+
+        .difficulty.medium {
+            background: #ffd202;
+            color: #789a99;
+        }
+
+        .difficulty.hard {
+            background: #789a99;
+            color: #ffd202;
+        }
+
+        .exercise-description {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .task-section {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffd202;
+        }
+
+        .task-section h3 {
+            color: #789a99;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .task-section p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .workspace {
+            background: #789a99;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .workspace-label {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: #ffd202;
+            color: #789a99;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .preview-area {
+            border: 3px dashed #cbd5e0;
+            background: white;
+            min-height: 300px;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-label {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: #ffd202;
+            color: #789a99;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .hint-box {
+            background: #fff;
+            border-left: 4px solid #ffd202;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .hint-box summary {
+            color: #789a99;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .hint-box p {
+            color: #4a5568;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .learning-objective {
+            background: #f0f0f0;
+            border-left: 4px solid #789a99;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .learning-objective h4 {
+            color: #789a99;
+            margin-bottom: 8px;
+        }
+
+        .learning-objective p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        code {
+            background: #f1f5f9;
+            color: #789a99;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .example-box {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .example-box strong {
+            color: #789a99;
+        }
+
+        .ex1-container,
+        .ex2-container,
+        .ex3-container,
+        .ex4-container,
+        .ex5-container,
+        .ex6-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ex1-box {
+            width: 100px;
+            height: 100px;
+            background: #789a99;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .ex2-parent {
+            background: #f0f0f0;
+            padding: 40px;
+            border: 3px solid #789a99;
+            border-radius: 8px;
+            min-height: 250px;
+        }
+
+        .ex2-child {
+            width: 120px;
+            height: 80px;
+            background: #ffd202;
+            color: #789a99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        /* Exercise 3 starter styles */
+        .ex3-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .ex3-badge {
+            background: #ffd202;
+            color: #789a99;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .ex3-card h3 {
+            color: #789a99;
+            margin: 15px 0 10px 0;
+        }
+
+        .ex3-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Exercise 4 starter styles */
+        .ex4-header {
+            background: #789a99;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+
+        .ex4-content {
+            padding: 20px;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .ex5-section {
+            background: #f3f4f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .ex5-heading {
+            background: #789a99;
+            color: white;
+            padding: 12px 20px;
+            margin: 0 -20px 15px -20px;
+            font-weight: 600;
+        }
+
+        .ex5-content {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .ex6-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .ex6-image {
+            background: linear-gradient(135deg, #789a99 0%, #ffd202 100%);
+            height: 150px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .ex6-image:hover {
+            transform: scale(1.05);
+        }
+
+        .ex6-overlay {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ex6-overlay.active {
+            display: flex;
+        }
+
+        .ex6-overlay-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1> CSS Positioning Assignment</h1>
+
+        <div class="intro">
+            <h2>Welcome!!</h2>
+            <p>These exercises are designed to help you master CSS positioning through hands-on practice. Each exercise
+                builds on the previous one, starting with simple concepts and progressing to real scenarios that you
+                will encounter when building websites.</p>
+            <p>For each exercise, you will be given a goal to achieve, some starter code, and hints if you get stuck.
+                Try to complete each exercise before moving on to the next one. The best way to learn positioning is by
+                experimenting and seeing what happens when you change different values.</p>
+            <p><strong>How to work:</strong> Read the task description carefully, think about which positioning type
+                would work best, then mentally plan how you would write the CSS code to achieve the goal. Check the
+                hints only if you are truly stuck, and try different approaches to see what works.</p>
+            <p><strong>NOTE:</strong>Try not to look at the soluion ohhhh. There are some things in the assignment that
+                i did not teach you you can do reasearch or watch your resources</p>
+        </div>
+
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-number">1</div>
+                <div class="exercise-title">Nudging Elements with Relative Positioning</div>
+                <div class="difficulty easy">Easy</div>
+            </div>
+
+            <div class="learning-objective">
+                <h4>🎯 What You'll Learn:</h4>
+                <p>Understanding how relative positioning lets you shift elements from their natural position while
+                    preserving their space in the document flow. This is fundamental because it shows you how
+                    positioning creates a visual offset without disrupting the layout around it.</p>
+            </div>
+
+            <div class="exercise-description">
+                You have a sage box that is currently sitting in its natural position. Your task is to move this box 30 pixels down and 50 pixels to the right from where it would normally be, but you need to keep its original space reserved in the layout so other elements do not move into that spot.
+            </div>
+
+            <div class="task-section">
+                <h3>Your Task:</h3>
+                <p>Apply CSS to the sage box so that it appears shifted down by 30 pixels and to the right by 50 pixels, while still maintaining its original position in the document flow. Notice how even though the box moves visually, there will be empty space where it used to be.</p>
+            </div>
+
+            <div class="preview-area">
+                <span class="preview-label">Preview Area</span>
+                <div class="ex1-container">
+                    <p style="color: #4a5568;">This is some text before the box.</p>
+                    <div class="ex1-box">Sage Box</div>
+                    <p style="color: #4a5568; margin-top: 10px;">This is some text after the box. Notice the spacing.
+                    </p>
+                </div>
+            </div>
+
+            <details class="hint-box">
+                <summary>💡 Click for Hint</summary>
+                <p>Think about which positioning type allows you to move an element while keeping its original space in
+                    the layout. You will need to use the <code>position</code> property with a specific value, then use
+                    <code>top</code> and <code>left</code> properties to create the offset. Remember that
+                    <code>top: 30px</code> pushes the element DOWN from its original position.</p>
+            </details>
+
+            <details class="hint-box" style="margin-top: 10px;">
+                <summary>✅ Click for Solution</summary>
+                <p><strong>CSS you would write:</strong></p>
+                <div class="example-box">
+                    .ex1-box {<br>
+                    &nbsp;&nbsp;position: relative;<br>
+                    &nbsp;&nbsp;top: 30px;<br>
+                    &nbsp;&nbsp;left: 50px;<br>
+                    }
+                </div>
+                <p><strong>Why this works:</strong> Relative positioning moves the element from its natural position
+                    while leaving a "ghost" in the layout. The <code>top: 30px</code> moves it down, and
+                    <code>left: 50px</code> moves it right. Other elements still behave as if the box is in its original
+                    location.</p>
+            </details>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-number">2</div>
+                <div class="exercise-title">Positioning Inside a Container</div>
+                <div class="difficulty easy">Easy</div>
+            </div>
+
+            <div class="learning-objective">
+                <h4>🎯 What You'll Learn:</h4>
+                <p>Understanding how absolute positioning works in relation to its nearest positioned ancestor. This is
+                    crucial because it teaches you how to create a positioning context, which is the foundation for
+                    building complex layouts with layered elements.</p>
+            </div>
+
+            <div class="exercise-description">
+                You have a sage parent container with a yellow child box inside it. Your goal is to position the yellow box in the bottom-right corner of the sage container, exactly 20 pixels from the bottom edge and 20 pixels from the right edge. The yellow box should be completely removed from the normal document flow.
+            </div>
+
+            <div class="task-section">
+                <h3>Your Task:</h3>
+                <p>Make the yellow box appear in the bottom-right corner of its sage parent container. The box should be positioned exactly 20 pixels away from both the bottom and right edges of the sage container. Other content in the container should flow as if the yellow box does not exist at all.</p>
+            </div>
+
+            <div class="preview-area">
+                <span class="preview-label">Preview Area</span>
+                <div class="ex2-parent">
+                    <p style="color: #789a99; margin-bottom: 10px;">Content inside the sage container flows normally.
+                    </p>
+                    <div class="ex2-child">Yellow Box</div>
+                    <p style="color: #789a99; margin-top: 10px;">More content that should flow normally.</p>
+                </div>
+            </div>
+
+            <details class="hint-box">
+                <summary>💡 Click for Hint</summary>
+                <p>You need two pieces here. First, the parent container needs to become a positioning reference point
+                    by giving it <code>position: relative</code>. Then, the child needs <code>position: absolute</code>
+                    so it positions itself relative to the parent. Use <code>bottom</code> and <code>right</code>
+                    properties to push it into the corner.</p>
+            </details>
+
+            <details class="hint-box" style="margin-top: 10px;">
+                <summary>✅ Click for Solution</summary>
+                <p><strong>CSS you would write:</strong></p>
+                <div class="example-box">
+                    .ex2-parent {<br>
+                    &nbsp;&nbsp;position: relative;<br>
+                    }<br><br>
+                    .ex2-child {<br>
+                    &nbsp;&nbsp;position: absolute;<br>
+                    &nbsp;&nbsp;bottom: 20px;<br>
+                    &nbsp;&nbsp;right: 20px;<br>
+                    }
+                </div>
+                <p><strong>Why this works:</strong> By giving the parent <code>position: relative</code>, you create a
+                    positioning context. The child with <code>position: absolute</code> then positions itself relative
+                    to this parent. The <code>bottom: 20px</code> means "20 pixels from the bottom of the parent" and
+                    <code>right: 20px</code> means "20 pixels from the right edge."</p>
+            </details>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-number">3</div>
+                <div class="exercise-title">Creating a Corner Badge</div>
+                <div class="difficulty medium">Medium</div>
+            </div>
+
+            <div class="learning-objective">
+                <h4>🎯 What You'll Learn:</h4>
+                <p>How to use absolute positioning to overlay decorative elements on top of content cards. This is a
+                    very common pattern in modern web design for badges, labels, icons, and status indicators that need
+                    to appear at specific corners of containers.</p>
+            </div>
+
+            <div class="exercise-description">
+                You have a product card with some content inside. Your task is to position a yellow "NEW" badge at the top-right corner of the card, so that it slightly overlaps the card border. The badge should appear 10 pixels from the top edge and 10 pixels from the right edge of the card.
+            </div>
+
+            <div class="task-section">
+                <h3>Your Task:</h3>
+                <p>Position the yellow badge at the top-right corner of the card. It should be 10 pixels from both the top and right edges. The badge needs to appear on top of the card content, not push it around. This is exactly how e-commerce sites show "Sale" or "New" badges on product images.</p>
+            </div>
+
+            <div class="preview-area">
+                <span class="preview-label">Preview Area</span>
+                <div class="ex3-card">
+                    <div class="ex3-badge">NEW</div>
+                    <h3>Premium Product</h3>
+                    <p>This is a description of an amazing product that you might want to purchase. The badge above
+                        should appear in the corner.</p>
+                </div>
+            </div>
+
+            <details class="hint-box">
+                <summary>💡 Click for Hint</summary>
+                <p>Think about what you learned in Exercise 2. The card needs to be the positioning reference (what
+                    position value creates a reference?), and the badge needs to be absolutely positioned relative to
+                    it. Use <code>top</code> and <code>right</code> to place it in the corner.</p>
+            </details>
+
+            <details class="hint-box" style="margin-top: 10px;">
+                <summary>✅ Click for Solution</summary>
+                <p><strong>CSS you would write:</strong></p>
+                <div class="example-box">
+                    .ex3-card {<br>
+                    &nbsp;&nbsp;position: relative;<br>
+                    }<br><br>
+                    .ex3-badge {<br>
+                    &nbsp;&nbsp;position: absolute;<br>
+                    &nbsp;&nbsp;top: 10px;<br>
+                    &nbsp;&nbsp;right: 10px;<br>
+                    }
+                </div>
+                <p><strong>Why this works:</strong> The card becomes a positioning container with
+                    <code>position: relative</code>. The badge is absolutely positioned, which removes it from the flow
+                    and lets it sit on top of other content. The <code>top</code> and <code>right</code> values position
+                    it precisely in the corner. This pattern is used everywhere in modern web design for overlays and
+                    decorative elements.</p>
+            </details>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-number">4</div>
+                <div class="exercise-title">Creating a Fixed Navigation Bar</div>
+                <div class="difficulty medium">Medium</div>
+            </div>
+
+            <div class="learning-objective">
+                <h4>🎯 What You'll Learn:</h4>
+                <p>How fixed positioning works and why it is essential for creating navigation bars that stay visible
+                    while users scroll. This teaches you the difference between absolute and fixed positioning, and how
+                    fixed elements relate to the viewport instead of any container.</p>
+            </div>
+
+            <div class="exercise-description">
+                You have a sage header bar that contains navigation links. Currently, when you scroll the content below, the header scrolls away with it. Your task is to make this header stay fixed at the very top of the viewport, so it remains visible no matter how far down the user scrolls. The header should span the full width of the viewport and stick to the top edge.
+            </div>
+
+            <div class="task-section">
+                <h3>Your Task:</h3>
+                <p>Make the header bar stick to the top of the viewport using fixed positioning. It should be exactly at
+                    the top edge (0 pixels from top) and stretch across the full width. When users scroll the content,
+                    the header should remain visible and stationary. You will also need to add padding to the content
+                    below so it does not hide behind the fixed header.</p>
+            </div>
+
+            <div class="preview-area" style="height: 400px; overflow-y: scroll;">
+                <span class="preview-label">Preview Area - Scroll to Test!</span>
+                <div class="ex4-header">Navigation Header - This should stick to the top</div>
+                <div class="ex4-content">
+                    <p>Scroll down in this area to see if the header stays at the top...</p>
+                    <p style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p style="margin-top: 20px;">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut aliquip ex ea commodo consequat.</p>
+                    <p style="margin-top: 20px;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu fugiat nulla pariatur.</p>
+                    <p style="margin-top: 20px;">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                        officia deserunt mollit anim id est laborum.</p>
+                    <p style="margin-top: 20px;">More content here to make scrolling necessary... Keep scrolling to see
+                        the effect!</p>
+                    <p style="margin-top: 20px;">The header should stay visible at the top of the scrollable area no
+                        matter how far you scroll down.</p>
+                </div>
+            </div>
+
+            <details class="hint-box">
+                <summary>💡 Click for Hint</summary>
+                <p>Use <code>position: fixed</code> for the header. Fixed elements position themselves relative to the
+                    viewport, not any parent container. Set <code>top: 0</code> to stick it to the top, and you will
+                    need <code>width: 100%</code> to make it span the full width. Do not forget to add
+                    <code>padding-top</code> to the content below equal to the header height, or the header will cover
+                    the first bit of content.</p>
+            </details>
+
+            <details class="hint-box" style="margin-top: 10px;">
+                <summary>✅ Click for Solution</summary>
+                <p><strong>CSS you would write:</strong></p>
+                <div class="example-box">
+                    .ex4-header {<br>
+                    &nbsp;&nbsp;position: fixed;<br>
+                    &nbsp;&nbsp;top: 0;<br>
+                    &nbsp;&nbsp;left: 0;<br>
+                    &nbsp;&nbsp;width: 100%;<br>
+                    &nbsp;&nbsp;z-index: 100; /* Ensures it appears above other content */<br>
+                    }<br><br>
+                    .ex4-content {<br>
+                    &nbsp;&nbsp;padding-top: 60px; /* Prevents content from hiding under header */<br>
+                    }
+                </div>
+                <p><strong>Why this works:</strong> Fixed positioning attaches the element to the viewport itself, not
+                    the document. When you scroll, the viewport does not move relative to fixed elements, so they appear
+                    to stay in place. The <code>z-index</code> ensures the header appears on top of scrolling content,
+                    and the padding-top on content prevents overlap.</p>
+            </details>
+        </div>
+
+        <!-- Exercise 5 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-number">5</div>
+                <div class="exercise-title">Building Sticky Section Headers</div>
+                <div class="difficulty hard">Hard</div>
+            </div>
+
+            <div class="learning-objective">
+                <h4>🎯 What You'll Learn:</h4>
+                <p>Mastering sticky positioning, which is one of the most useful and modern positioning techniques.
+                    Sticky elements behave like relative positioning until they reach a scroll threshold, then they
+                    stick in place like fixed elements. This is perfect for section headers that should stick when
+                    scrolled into view.</p>
+            </div>
+
+            <div class="exercise-description">
+                You have multiple content sections, each with a colored heading. Your challenge is to make each section
+                heading stick to the top of the scrollable area when the user scrolls to that section. As you scroll
+                down past "Section 1", its heading should stick at the top. When you reach "Section 2", its heading
+                should push the previous one out of the way and stick instead. This creates a beautiful layered
+                scrolling effect.
+            </div>
+
+            <div class="task-section">
+                <h3>Your Task:</h3>
+                <p>Apply sticky positioning to the section headings so they stick to the top of the scroll container
+                    when scrolled to. Each heading should stick at <code>top: 0px</code> of its scroll container. When a
+                    new section heading reaches the top, it should stack on top of or push away the previous sticky
+                    heading. Try scrolling through all sections to see the effect working properly.</p>
+            </div>
+
+            <div class="preview-area" style="height: 400px; overflow-y: scroll;">
+                <span class="preview-label">Preview Area - Scroll Through Sections!</span>
+                <div class="ex5-container">
+                    <div class="ex5-section">
+                        <div class="ex5-heading">Section 1: Introduction</div>
+                        <div class="ex5-content">
+                            <p>This is the content for section 1. As you scroll down, watch what happens to this
+                                section's heading. It should stick to the top of the scrollable area.</p>
+                            <p style="margin-top: 15px;">Keep reading more content here. There is quite a bit to
+                                demonstrate the scrolling behavior properly.</p>
+                            <p style="margin-top: 15px;">Even more content to make this section long enough for proper
+                                scrolling demonstration.</p>
+                        </div>
+                    </div>
+                    <div class="ex5-section">
+                        <div class="ex5-heading" style="background: #ffd202; color: #789a99;">Section 2: Main Content</div>
+                        <div class="ex5-content">
+                            <p>Now you are in section 2. Notice how its heading behaves as you scroll. When it reaches
+                                the top, it should stick there and push section 1's heading away.</p>
+                            <p style="margin-top: 15px;">This demonstrates how sticky positioning creates a natural,
+                                elegant scrolling experience for long-form content.</p>
+                            <p style="margin-top: 15px;">More content to ensure proper scrolling behavior demonstration.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ex5-section">
+                        <div class="ex5-heading" style="background: #789a99;">Section 3: Conclusion</div>
+                        <div class="ex5-content">
+                            <p>Finally, section 3. This heading should also stick when it reaches the top, replacing
+                                section 2's heading.</p>
+                            <p style="margin-top: 15px;">Sticky positioning is perfect for creating table of contents
+                                navigation, section headers, or any interface where context needs to remain visible.</p>
+                            <p style="margin-top: 15px;">Try scrolling back up to see how the headings unstick as you
+                                reverse direction!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <details class="hint-box">
+                <summary>💡 Click for Hint</summary>
+                <p>The key is applying <code>position: sticky</code> to the heading elements along with a
+                    <code>top</code> value that tells them when to stick. Think of sticky as a hybrid between relative
+                    and fixed. The element scrolls normally until it hits the threshold you specify with the
+                    <code>top</code> property, then it locks in place like a fixed element. Each heading needs
+                    <code>position: sticky</code> and <code>top: 0</code>.</p>
+            </details>
+
+            <details class="hint-box" style="margin-top: 10px;">
+                <summary>✅ Click for Solution</summary>
+                <p><strong>CSS you would write:</strong></p>
+                <div class="example-box">
+                    .ex5-heading {<br>
+                    &nbsp;&nbsp;position: sticky;<br>
+                    &nbsp;&nbsp;top: 0;<br>
+                    &nbsp;&nbsp;z-index: 10; /* Ensures headings stack properly */<br>
+                    }
+                </div>
+                <p><strong>Why this works:</strong> Sticky positioning makes elements behave like relatively positioned
+                    until they scroll to the threshold specified by <code>top</code>. Once they reach
+                    <code>top: 0</code>, they become fixed at that position. When the next sticky element arrives, it
+                    pushes the previous one out of the way. This creates the beautiful layered scrolling effect you see
+                    in modern apps and websites. The <code>z-index</code> ensures proper stacking order when multiple
+                    sticky elements interact.</p>
+            </details>
+        </div>
+
+        <!-- Exercise 6 -->
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <div class="exercise-number">6</div>
+                <div class="exercise-title">Building a Modal Overlay</div>
+                <div class="difficulty hard">Hard</div>
+            </div>
+
+            <div class="learning-objective">
+                <h4>🎯 What You'll Learn:</h4>
+                <p>Combining fixed positioning with absolute positioning to create a modal overlay that covers the
+                    entire viewport with a darkened background while centering a content box. This is one of the most
+                    common patterns in web development and teaches you how to layer elements and center content using
+                    positioning techniques.</p>
+            </div>
+
+            <div class="exercise-description">
+                You have an image gallery where clicking an image should open a full-screen modal overlay. The overlay
+                should cover the entire viewport with a dark semi-transparent background, and a white content box should
+                appear perfectly centered in the middle of the screen. This is exactly how lightboxes, dialog boxes, and
+                modals work on real websites.
+            </div>
+
+            <div class="task-section">
+                <h3>Your Task:</h3>
+                <p>Create a modal overlay that appears when clicking any image in the gallery. The overlay should use
+                    fixed positioning to cover the entire viewport from edge to edge. The white content box inside
+                    should be centered both horizontally and vertically. You will need to use a combination of
+                    positioning techniques along with transform to achieve perfect centering. The overlay should have a
+                    dark background with some transparency.</p>
+                <p style="margin-top: 10px;"><strong>Bonus challenge:</strong> Can you figure out how to center the
+                    white box using absolute positioning and the transform property with translate?</p>
+            </div>
+
+            <div class="preview-area">
+                <span class="preview-label">Preview Area - Click an Image!</span>
+                <div class="ex6-gallery">
+                    <div class="ex6-image" onclick="document.getElementById('modal').classList.add('active')">Image 1
+                    </div>
+                    <div class="ex6-image" onclick="document.getElementById('modal').classList.add('active')">Image 2
+                    </div>
+                    <div class="ex6-image" onclick="document.getElementById('modal').classList.add('active')">Image 3
+                    </div>
+                    <div class="ex6-image" onclick="document.getElementById('modal').classList.add('active')">Image 4
+                    </div>
+                    <div class="ex6-image" onclick="document.getElementById('modal').classList.add('active')">Image 5
+                    </div>
+                    <div class="ex6-image" onclick="document.getElementById('modal').classList.add('active')">Image 6
+                    </div>
+                </div>
+                <div class="ex6-overlay" id="modal" onclick="this.classList.remove('active')">
+                    <div class="ex6-overlay-content" onclick="event.stopPropagation()">
+                        <h3 style="margin-bottom: 15px;">Modal Content</h3>
+                        <p>This box should be perfectly centered on the screen. The dark background should cover the
+                            entire viewport.</p>
+                        <button onclick="document.getElementById('modal').classList.remove('active')"
+                            style="margin-top: 20px; padding: 10px 20px; background: #789a99; color: white; border: none; border-radius: 6px; cursor: pointer;">Close
+                            Modal</button>
+                    </div>
+                </div>
+            </div>
+
+            <details class="hint-box">
+                <summary>💡 Click for Hint #1 - The Overlay Background</summary>
+                <p>The overlay background needs to cover the entire viewport, so use <code>position: fixed</code> with
+                    <code>top: 0</code>, <code>left: 0</code>, <code>right: 0</code>, and <code>bottom: 0</code>. This
+                    makes it stretch to fill the whole screen. Give it a dark background color with transparency like
+                    <code>background: rgba(0, 0, 0, 0.9)</code>.</p>
+            </details>
+
+            <details class="hint-box" style="margin-top: 10px;">
+                <summary>💡 Click for Hint #2 - Centering the Content</summary>
+                <p>To center the white content box, you can use absolute positioning combined with a transform trick.
+                    Position the box absolutely with <code>top: 50%</code> and <code>left: 50%</code>, which moves its
+                    top-left corner to the center of the overlay. Then use <code>transform: translate(-50%, -50%)</code>
+                    to shift it back by half its own width and height, achieving perfect centering.</p>
+            </details>
+
+            <details class="hint-box" style="margin-top: 10px;">
+                <summary>✅ Click for Solution</summary>
+                <p><strong>CSS you would write:</strong></p>
+                <div class="example-box">
+                    .ex6-overlay {<br>
+                    &nbsp;&nbsp;position: fixed;<br>
+                    &nbsp;&nbsp;top: 0;<br>
+                    &nbsp;&nbsp;left: 0;<br>
+                    &nbsp;&nbsp;right: 0;<br>
+                    &nbsp;&nbsp;bottom: 0;<br>
+                    &nbsp;&nbsp;background: rgba(0, 0, 0, 0.9);<br>
+                    &nbsp;&nbsp;z-index: 1000; /* Appears above everything */<br>
+                    }<br><br>
+                    .ex6-overlay-content {<br>
+                    &nbsp;&nbsp;position: absolute;<br>
+                    &nbsp;&nbsp;top: 50%;<br>
+                    &nbsp;&nbsp;left: 50%;<br>
+                    &nbsp;&nbsp;transform: translate(-50%, -50%);<br>
+                    }
+                </div>
+                <p><strong>Why this works:</strong> Fixed positioning on the overlay makes it cover the viewport
+                    regardless of scroll position. Setting all four edges to 0 stretches it to fill the screen. The
+                    content box uses absolute positioning (which positions it relative to the fixed overlay) with
+                    <code>top: 50%</code> and <code>left: 50%</code> to move its corner to the center. The transform
+                    then shifts it back by half its dimensions, achieving perfect centering. This is the standard
+                    pattern for modals, lightboxes, and dialog overlays in modern web development.</p>
+            </details>
+        </div>
+
+        <div class="intro">
+            <h2>🎉 Congratulations!</h2>
+            <p>You have completed all six positioning exercises! By working through these challenges, you have learned
+                how to use static, relative, absolute, fixed, and sticky positioning in real scenarios. These are the
+                exact patterns you will use when building actual websites and applications.</p>
+            <p><strong>Remember:</strong> Understanding when and how to combine these positioning types is what
+                separates beginner developers from those who can build professional, polished interfaces.</p>
+            <p>Keep practicing these patterns, and soon positioning go easy die!</p>
+        </div>
+    </div>
+</body>
+
+</html>
